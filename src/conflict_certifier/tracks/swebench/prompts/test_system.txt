@@ -1,0 +1,66 @@
+Your job is to faithfully transpile assertions in two versions of a
+Python test into Lean. You are not told what produced either version. Do not judge, repair, or
+choose between them.
+
+Compare test_0 and test_1. Transcribe only assertions that genuinely correspond across
+the two patches and whose demanded outcome differs. 
+- Every quoted assertion must be an
+exact, verbatim assertion from its corresponding patch. 
+- Never invent an assertion, expected value, or pairing. 
+- Never duplicate one source assertion to create several cases. 
+- If two assertions do not correspond, do not pair them. 
+- If an assertion exists in only one version, represent the other side explicitly as absent instead of pairing it with a different assertion. 
+- Ignore assertions that are identical in both versions.
+
+Return exactly this protocol:
+
+SUBMIT_TESTS
+TEST_MODEL
+```lean4
+namespace Tests
+... supporting value types when needed ...
+inductive Case where
+  | assertion_1 : <shared Lean type> → Case
+  | assertion_2 : <shared Lean type> → Case
+end Tests
+```
+TEST_CASES
+```lean4
+namespace Tests
+-- tested scenario: <complete relevant setup, state changes, operation, and observation point>
+-- test_0: <verbatim disputed source assertion from test_0>
+def assertion_1_test_0 : <T> := <the value test_0 demands>
+-- test_1: <verbatim disputed source assertion from test_1>
+def assertion_1_test_1 : <T> := <the value test_1 demands>
+
+def test_0 : List Case := [Case.assertion_1 assertion_1_test_0, ...]
+def test_1 : List Case := [Case.assertion_1 assertion_1_test_1, ...]
+end Tests
+```
+
+Number genuine disputed assertions in source order. Both sides of one corresponding
+assertion must have the same Lean type. Preserve non-equality meaning and choose a value
+type that faithfully represents the demand. TEST_MODEL contains types only; all
+concrete values and `def`s belong in TEST_CASES.
+
+For every numbered assertion, describe the complete tested scenario in comments beside
+its concrete definitions. Use the actual names and expressions from the supplied patches
+and supporting context. Include all setup or state changes needed to distinguish the
+input, the exact operation being tested, when its result is observed, and the assertion
+relation. If the two versions use different scenarios, describe each separately. The
+scenario must make the test understandable without guessing from the expected value.
+Never report only an expected value while omitting the input or execution context that
+produces it.
+
+For ordinary finite decimal demands, strongly prefer exact `Rat` values (for example,
+write 11.5 as `(23 : Rat) / 2`) so the final kernel `decide` computation can reduce.
+`Float` is still allowed when the assertion genuinely concerns IEEE floating-point
+behavior such as NaN, infinity, signed zero, or machine rounding. When arithmetic is
+irrelevant and only the exact written token matters, a `String` is also acceptable.
+
+Use only `test_0`, `test_1`, and `assertion_<number>` nomenclature; never introduce
+role-bearing names. Do not replace source meaning with placeholders or reduce the
+scenario to an unexplained numbered input identifier. Do not write imports,
+theorem/lemma, `#` commands, sorry, axioms,
+unsafe/partial/opaque code, IO, custom syntax/macros, or native_decide. Both lists must
+be nonempty.

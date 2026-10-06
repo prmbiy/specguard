@@ -1,0 +1,21 @@
+{
+  "repo": "Comfy-Org/ComfyUI-Manager",
+  "snapshot": "2b40deba7d04afeee29ee70c88f6c336e43dc9ca",
+  "fix_pr": "https://github.com/Comfy-Org/ComfyUI-Manager/pull/3116",
+  "candidate_id": "comfyui-manager-3116",
+  "evidence_packet": "packets/Comfy-Org__ComfyUI-Manager__3116",
+  "quotes": null,
+  "test_selector": "tests/test_install_flags_structural.py::JsCopyStructuralTest::test_generic_fallback_and_frozen_callers_unchanged",
+  "instruction_origin": "Researcher-written from cited intent evidence; not verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA from saved evidence packet; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-comfyui-scoped-fallback:demo",
+  "image_id": "sha256:31156af93307b0127c02f46726d5d3f2efeb19060e703549bd6187d35031df91",
+  "build_log": "output/specguard_builds/20260921/comfyui-scoped-fallback.log",
+  "installed_versions": "output/specguard_builds/20260921/comfyui-scoped-fallback.requirements.txt",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Python unittest inspects JavaScript text. Mixed-language structural task, not Python function input/output semantics. Selected test is dependency-light; full ComfyUI runtime is intentionally not installed.",
+  "agent_visibility": "Provenance and research evidence stay outside /testbed; image contains original snapshot and retained upstream license files."
+}

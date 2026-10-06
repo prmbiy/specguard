@@ -1,0 +1,43 @@
+{
+  "repo": "opendatahub-io/opendatahub-tests",
+  "snapshot": "67564156721beb03560e538befea44e4a7a14ff8",
+  "fix_pr": "https://github.com/opendatahub-io/opendatahub-tests/pull/2402",
+  "candidate_id": "opendatahub-2402",
+  "evidence_packet": "packets/opendatahub-io__opendatahub-tests__2402",
+  "quotes": [
+    {
+      "quote": "Renamed LIFECYCLE_PHASE_SUCCEEDED to LIFECYCLE_PHASE_COMPLETED and updated all usages, since test_lbl_002 expected the trustyai.opendatahub.io/evaluation-phase Job label to be \"Succeeded\" on success but EvalHub sets it to \"Completed\" (confirmed live via oc get jobs --show-labels: Pending -> Running -> Completed).",
+      "source_url": "https://github.com/opendatahub-io/opendatahub-tests/pull/2402"
+    },
+    {
+      "quote": "cross checked with evalhub go source",
+      "source_url": "https://github.com/opendatahub-io/opendatahub-tests/pull/2402"
+    },
+    {
+      "quote": "- https://redhat.atlassian.net/browse/RHOAIENG-93646\r\n- https://redhat.atlassian.net/browse/RHOAIENG-91491",
+      "source_url": "https://github.com/opendatahub-io/opendatahub-tests/pull/2402"
+    },
+    {
+      "quote": "Updated lifecycle status handling to use **\u201cCompleted\u201d** for finished evaluations.",
+      "source_url": "https://github.com/opendatahub-io/opendatahub-tests/pull/2402"
+    }
+  ],
+  "test_selector": "tests/ai_safety/evalhub/k8s_lifecycle_signals/test_evalhub_lifecycle_job_label_phase.py::TestLblJobLabelPhase::test_lbl_002_job_label_set_to_succeeded_on_completion",
+  "test_source_sha256": "b4431f1a76a93c36e5b609bd12f16ba4b3535bce081e7a75eb6ac2c938d3c047",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-opendatahub-eval-completed:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Requires an OpenShift/Kubernetes cluster with EvalHub, a known-good model/dataset, routes and test fixtures. Source-inspection image only; no cluster or external services are provisioned.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:4dfd9915ac76377d869f2f20d29c31786f91c653826d7298c50aa108110fc443",
+  "build_log": "output/specguard_builds/20260921T223538Z/opendatahub-eval-completed.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/opendatahub-eval-completed.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/opendatahub-eval-completed.cli.log"
+}

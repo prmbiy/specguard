@@ -1,0 +1,39 @@
+{
+  "repo": "ckan/ckan",
+  "snapshot": "308ed49062c072ceaba2c6f9f2139f28c2854ab2",
+  "fix_pr": "https://github.com/ckan/ckan/pull/9507",
+  "candidate_id": "ckan-9507",
+  "evidence_packet": "packets/ckan__ckan__9507",
+  "quotes": [
+    {
+      "quote": "group_show, organization_show include_users default to False after 2.12 as documented in #9263\r\n\r\nEssentially the same changes as #9232 which was partially reverted on master for some reason.",
+      "source_url": "pr.json"
+    },
+    {
+      "quote": "After CKAN 2.12 the include_users parameter to organization_show and group_show\nactions will default to False regardless of the ckan.auth.public_user_details\nconfiguration setting.",
+      "source_url": "pr.diff"
+    },
+    {
+      "quote": "if config.get('ckan.auth.public_user_details'):\n            include_users = asbool(data_dict.get('include_users', True))\n        else:\n            include_users = asbool(data_dict.get('include_users', False))",
+      "source_url": "pr.diff"
+    }
+  ],
+  "test_selector": "ckan/tests/controllers/test_organization.py::TestOrganizationMembership::test_member_delete",
+  "test_source_sha256": "3b88a6703398d2db088e3b9af465c6aef7ea3555e8d07887c4c0f6a8d331b7be",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-ckan-include-users-default:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "CKAN package installed; application test execution additionally needs the configured PostgreSQL, Solr and Redis services, test INI and initialized database. No external services or credentials are embedded.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:589a65afca44199fc039fd0b8d2e50f19b7cff4024865b341f7b167bba361773",
+  "build_log": "output/specguard_builds/20260921T223538Z/ckan-include-users-default.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/ckan-include-users-default.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/ckan-include-users-default.cli.log"
+}

@@ -1,0 +1,76 @@
+# swebench LEAN track — full 349-instance run, gpt-5.6-sol.
+#
+#   uv run swebench-lean --config configs/swebench_lean.yaml
+#
+# Keys = flag names (dest form: dashes -> underscores). Explicit CLI flags override
+# this file. The run copies its fully-RESOLVED settings into
+# output/swe_runs/<model>/<stamp>/config.yaml, so every run records what it ran with.
+#
+# For the python track use configs/swebench_py.yaml — the lean-only keys here
+# (repl_processes, lean_timeout) are rejected by swebench_py.run.
+
+
+# Runs land under output/swe_runs/<model>/<stamp>/ — per-model, so switching
+# never overwrites another model's results.
+
+# --- OpenAI / GPT 5.6 Sol ---------------------------------------------------
+# provider: openai_compatible
+# model: gpt-5.6-sol
+# api_key_env: OPENAI_API_KEY
+
+provider: openai_compatible
+# model: openai/gpt-5.6-sol
+model: openai/gpt-6-astra
+api_key_env: OPENROUTER_API_KEY
+api_base_env: OPENROUTER_BASE_URL
+
+# --- Anthropic --------------------------------------------------------------
+# provider: anthropic
+# model: claude-fable-5
+# # model: claude-opus-5
+# api_key_env: ANTHROPIC_API_KEY
+# effort: medium                    # low | medium | high | xhigh | max
+
+# --- OpenRouter / Qwen 3.8 -----------------------------------------
+# provider: openai_compatible
+# model: qwen/qwen3.8-27b
+# api_key_env: OPENROUTER_API_KEY
+# api_base_env: OPENROUTER_BASE_URL
+
+# --- OpenRouter / Kimi K3 ---------------------------------------------------
+# provider: openai_compatible
+# model: moonshotai/kimi-k3
+# api_key_env: OPENROUTER_API_KEY
+# api_base_env: OPENROUTER_BASE_URL
+
+max_tokens: 16000
+# deliberately unset = no cap. openai_compatible omits the parameter
+
+# --- instances ---------------------------------------------------------------
+split: oneoff                 # oneoff | conflicting | original
+all: true                     # every instance in the split (349); all images present
+limit: 0                    # ...but stop after the first N (0 = no limit).
+                              # Sorted instance-id order, so it is reproducible.
+# ids:                        # ...or pin an explicit subset instead of all: true
+#   - astropy__astropy-7336
+
+# --- Agent behaviour ---------------------------------------------------------
+# Codebase access and the frozen, answer-free input slice are mandatory.
+# `conflicting` keeps the two shuffled test_0/test_1 variants. `original` sends
+# its single unmodified patch to the separate faithful-translation TestAgent.
+spec_turns: 120               # max turns for SpecAgent
+spec_submissions: 10          # max Lean submissions within those 120 turns
+exec_timeout: 120             # per-bash-command timeout (s) in the container
+test_submissions: 10          # total TestAgent submissions, including the first
+connector_submissions: 6      # after the one fixed direct-connector compile
+test_order_seed: 0            # reproducible neutral ordering of the test variants
+
+# --- concurrency / Lean backend ---------------------------------------------
+workers: 50                    # instances processed concurrently (containers + LLM).
+                              # Each holds a SWE-bench container; watch RAM before
+                              # raising (31G total on this box).
+repl_processes: 5             # warm Lean REPLs, ~2.5GB each. Independent of
+                              # `workers`: a worker needing a check borrows an idle
+                              # REPL, uses it exclusively, returns it. >1 stops one
+                              # slow `decide` from blocking every other worker.
+lean_timeout: 120             # per-check Lean timeout (s); exceeded => TIMEOUT

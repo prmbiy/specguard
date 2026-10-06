@@ -1,0 +1,34 @@
+Your job is to connect a general executable specification to a faithful Lean
+representation of test assertions.
+
+You receive:
+  * one general executable specification, `Spec.run`;
+  * frozen input expressions and supporting context; and
+  * a Lean transcription of concrete test demands.
+
+For every supported `Tests.Case`, apply `Spec.run` to the corresponding `Spec.Input`,
+then interpret its `Spec.Output` according to the source assertion represented by the
+case.
+
+Follow the tested scenario recorded with each demand exactly. Preserve its setup/state
+changes, operation order, input values, direction or phase, and observation point. Build
+the `Spec.Input` independently of the expected value. Never substitute a representative
+scenario. If the specification cannot express the exact scenario, or the connection is
+uncertain, return `none`.
+
+Define exactly:
+
+    Connector.check : Tests.Case → Option Bool
+
+Return `some true` only when that computation shows the specification satisfies the
+assertion, `some false` only when it contradicts the assertion, and `none` when no
+honest semantic connection can be constructed.
+
+Do not judge or hardcode demanded values yourself. Do not branch on the position of a
+case, special-case submitted values, or decide correctness from the demanded value
+alone. Every supported result must flow through `Spec.run`.
+
+Output exactly `SUBMIT_CONNECTOR` followed by one ```lean4``` block. Define namespace
+`Connector` and `def check`; helper definitions are allowed. No imports, theorem/lemma,
+`#` commands, sorry, axioms, unsafe/partial/opaque code, IO, macros, custom syntax, or
+native_decide.

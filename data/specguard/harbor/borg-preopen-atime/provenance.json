@@ -1,0 +1,39 @@
+{
+  "repo": "borgbackup/borg",
+  "snapshot": "a6904402ef300eaf95fb757ecbdea245979549d7",
+  "fix_pr": "https://github.com/borgbackup/borg/pull/10392",
+  "candidate_id": "borg-10392",
+  "evidence_packet": "packets/borgbackup__borg__10392",
+  "quotes": [
+    {
+      "quote": "The test assumed that borg archives the atime the input file has after the backup read it. But since #6194, borg archives the atime the file had *before* borg opened it. With last access time updates enabled, reading the input file bumps its atime to \"now\", so the comparison fails although borg works correctly.",
+      "source_url": "https://github.com/borgbackup/borg/pull/10392"
+    },
+    {
+      "quote": "So `set_times` in `platform/windows.pyx` and `borg extract` are fine, only the test was wrong.",
+      "source_url": "https://github.com/borgbackup/borg/pull/10392"
+    },
+    {
+      "quote": "# borgs archives the atime the input file had before borg opened it (see #6194), so do not compare with\n    # the input file: NTFS updates its atime when borg reads it, if last access time updates are enabled.\n    assert sto.st_atime_ns == atime_ns",
+      "source_url": "https://github.com/borgbackup/borg/pull/10392.diff"
+    }
+  ],
+  "test_selector": "src/borg/testsuite/archiver/extract_cmd_test.py::test_timestamps_win32",
+  "test_source_sha256": "70d47c59be7e74724448fc8e2631b3fab9476a519b81c88ed7e95436ac03c548",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-borg-preopen-atime:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "The selected test is Windows/NTFS-specific and cannot be reproduced in this Linux container. Native Borg extensions are not compiled. Source and Windows-specific test are retained unchanged; this is a source-inspection image, not a Windows emulator.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:3a85d704f94a122f1ad7eaf3929cda3781d4de69675a909e630767982e1fe18f",
+  "build_log": "output/specguard_builds/20260921T223538Z/borg-preopen-atime.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/borg-preopen-atime.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/borg-preopen-atime.cli.log"
+}

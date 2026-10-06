@@ -1,0 +1,21 @@
+{
+  "repo": "vllm-project/vllm",
+  "snapshot": "2131b597b18d051dced4c4a605d362fa37f46ed1",
+  "fix_pr": "https://github.com/vllm-project/vllm/pull/44942",
+  "candidate_id": "vllm-44942",
+  "evidence_packet": "packets/vllm-project__vllm__44942",
+  "quotes": null,
+  "test_selector": "tests/test_envs.py::test_precompiled_install_flags_are_orthogonal",
+  "instruction_origin": "Researcher-written from cited intent evidence; not verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA from saved evidence packet; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-vllm-precompiled-flags:demo",
+  "image_id": "sha256:b2e18e62fc45bcd7b42f9a18708a97ba7ca4e9dd2d4947632b7a0f327ad34c48",
+  "build_log": "output/specguard_builds/20260921/vllm-precompiled-flags.log",
+  "installed_versions": "output/specguard_builds/20260921/vllm-precompiled-flags.requirements.txt",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Pure-Python environment checks only; no GPU inference installation. Reproduction bypasses repository-wide conftest and pytest addopts to avoid loading GPU fixtures. Must verify imports in the built image.",
+  "agent_visibility": "Provenance and research evidence stay outside /testbed; image contains original snapshot and retained upstream license files."
+}

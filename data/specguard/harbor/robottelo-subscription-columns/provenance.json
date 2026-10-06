@@ -1,0 +1,39 @@
+{
+  "repo": "SatelliteQE/robottelo",
+  "snapshot": "9f45edc6705604c2682a18f95da8eaa58a47f507",
+  "fix_pr": "https://github.com/SatelliteQE/robottelo/pull/22593",
+  "candidate_id": "robottelo-22593",
+  "evidence_packet": "packets/SatelliteQE__robottelo__22593",
+  "quotes": [
+    {
+      "quote": "adjusting to changes made in https://github.com/Katello/katello/pull/11806 \n\"Select all rows\" is no longer a named columd\nrequires https://github.com/SatelliteQE/airgun/pull/2497",
+      "source_url": "pr.json#body"
+    },
+    {
+      "quote": "-        assert headers == ('Select all rows', 'Name')\n+        assert headers == ['Name']",
+      "source_url": "pr.diff"
+    },
+    {
+      "quote": "Test Result : =========== 1 failed, 6 deselected, 5 warnings in 818.37s (0:13:38) ============",
+      "source_url": "comments.json"
+    }
+  ],
+  "test_selector": "tests/foreman/ui/test_subscription.py::test_select_customizable_columns_uncheck_and_checks_all_checkboxes",
+  "test_source_sha256": "3d606fb3cd6128fdefa3f0e6a3505243c53079eadb1fa6e8bfee78a16f05f436",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-robottelo-subscription-columns:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Requires a Foreman/Katello deployment, browser and matching Airgun client. The image contains original tests and Python inspection tools, not that deployment. No testbed credentials are supplied.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:5aabeb2b8a9f1858a7e780e9585e935d96c22b124489334fff3e6b4695a5e129",
+  "build_log": "output/specguard_builds/20260921T223538Z/robottelo-subscription-columns.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/robottelo-subscription-columns.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/robottelo-subscription-columns.cli.log"
+}

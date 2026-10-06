@@ -1,0 +1,35 @@
+{
+  "repo": "ray-project/ray",
+  "snapshot": "9fbfdcd7b076c6e9cbf376b0fd387b1393f98321",
+  "fix_pr": "https://github.com/ray-project/ray/pull/64883",
+  "candidate_id": "ray-64883",
+  "evidence_packet": "packets/ray-project__ray__64883",
+  "quotes": [
+    {
+      "quote": "`test_map_batches_actors_preserves_order` runs a simple pipeline with actors and asserts that outputs are ordered. This test is both incorrect and flaky. Ray Data doesn't make any guarantees about ordering by default, so I'm removing it.",
+      "source_url": "pr.json#body"
+    },
+    {
+      "quote": "assert extract_values(\"id\", ds.map_batches(UDFClass, concurrency=1).take()) == list(\n    range(10)\n)",
+      "source_url": "pr.diff"
+    }
+  ],
+  "test_selector": "python/ray/data/tests/test_map_batches.py::test_map_batches_actors_preserves_order",
+  "test_source_sha256": "c6c89bd40bd2612eb1f4547a40c905268ae9cce242028a9011fa2b84ead1e7c7",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-ray-actor-order:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Source-inspection image. Ray native binaries are not compiled; executing the selected distributed test additionally requires a matching Ray build. Ordering is nondeterministic, so one passing execution does not establish the contract.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:bbf84c9c426e6c4c74221d136e3545e37f00377e86f9a4d79c5926cbb5dc3f69",
+  "build_log": "output/specguard_builds/20260921T223538Z/ray-actor-order.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/ray-actor-order.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/ray-actor-order.cli.log"
+}

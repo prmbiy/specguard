@@ -1,0 +1,43 @@
+# SWE-bench task-level LLM baseline.
+#
+#   uv run python -m conflict_certifier.tracks.swebench.baseline \
+#     --config configs/swebench_baseline.yaml
+
+# --- OpenAI / GPT 5.6 Sol ---------------------------------------------------
+# provider: openai_compatible
+# model: gpt-5.6-sol
+# api_key_env: OPENAI_API_KEY
+
+# --- OpenRouter / GPT 5.6 Sol -----------------------------------------------
+provider: openai_compatible
+model: openai/gpt-5.6-sol
+api_key_env: OPENROUTER_API_KEY
+api_base_env: OPENROUTER_BASE_URL
+
+# --- Anthropic --------------------------------------------------------------
+# provider: anthropic
+# # model: claude-fable-5
+# model: claude-opus-5
+# api_key_env: ANTHROPIC_API_KEY
+# effort: medium                    # low | medium | high | xhigh | max
+
+# --- OpenRouter -------------------------------------------------------------
+# provider: openai_compatible
+# model: qwen/qwen3.8-27b
+# api_key_env: OPENROUTER_API_KEY
+# api_base_env: OPENROUTER_BASE_URL
+
+max_tokens: 16000
+
+# Run original and oneoff separately. The model-facing prompt is identical.
+split: original                     # original | oneoff
+all: true
+limit: 0                            # 0 = all 349 tasks
+# ids:
+#   - astropy__astropy-12907
+
+turns: 120                          # bash exploration and final answer combined
+allow_inconclusive: true             # permits INCONCLUSIVE with a specific missing-evidence reason
+votes: 5                            # 1 | 3 | 5 independent investigations per task
+exec_timeout: 120                   # seconds per bash command
+workers: 100

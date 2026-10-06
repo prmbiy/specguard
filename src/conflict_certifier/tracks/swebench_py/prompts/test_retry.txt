@@ -1,0 +1,6 @@
+Rejected transcription:
+{error}
+
+Return a corrected `SUBMIT_TESTS` artifact only. Preserve every genuine differing
+assertion exactly, quote real source lines, use the corresponding frozen input number,
+and do not invent or omit anything.

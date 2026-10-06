@@ -1,0 +1,43 @@
+{
+  "repo": "sonic-net/sonic-mgmt",
+  "snapshot": "4da431471daab3ad65234b180d42d21c66abeaeb",
+  "fix_pr": "https://github.com/sonic-net/sonic-mgmt/pull/26935",
+  "candidate_id": "sonicmgmt-26935",
+  "evidence_packet": "packets/sonic-net__sonic-mgmt__26935",
+  "quotes": [
+    {
+      "quote": "caclmgrd now programs these in **every managed namespace** (host and all per-ASIC namespaces on multi-ASIC) \u2014 so the rules are expected unconditionally, regardless of `asic_index`",
+      "source_url": "https://github.com/sonic-net/sonic-mgmt/pull/26935"
+    },
+    {
+      "quote": "Fixes #26908",
+      "source_url": "https://github.com/sonic-net/sonic-mgmt/pull/26935"
+    },
+    {
+      "quote": "sonic-net/sonic-buildimage#28061 adds new protected FRR BGP ports; test update to\n      follow once that image is checked in",
+      "source_url": "https://github.com/sonic-net/sonic-mgmt/pull/26935/files"
+    },
+    {
+      "quote": "Remove the `xfail` blocks for `test_cacl_application_nondualtor` and `test_multiasic_cacl_application` that were added in #26909 as a temporary workaround pending this fix.",
+      "source_url": "https://github.com/sonic-net/sonic-mgmt/pull/26935"
+    }
+  ],
+  "test_selector": "tests/cacl/test_cacl_application.py::test_cacl_application_nondualtor",
+  "test_source_sha256": "4b142fff994b8e5fe60854465deeb5611b237e8e46f981c13090b0b24739c5e1",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-sonic-frr-loopback-acl:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Requires a SONiC DUT/testbed with the FRR ACL image change and its topology/inventory. Those external systems are not included; image provides the original management/test sources and Python inspection tooling.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:318d363b0601f752829313fd2c82d3d1269fe6f3f5d0cd66401cbff6692e9f6a",
+  "build_log": "output/specguard_builds/20260921T223538Z/sonic-frr-loopback-acl.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/sonic-frr-loopback-acl.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/sonic-frr-loopback-acl.cli.log"
+}

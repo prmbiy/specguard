@@ -1,0 +1,7 @@
+Rejected: {error}
+Return a corrected SUBMIT_TESTS response with exactly one TEST_MODEL block and one
+TEST_CASES block. Faithfully translate every applicable direct or parameterized test
+demand from the resulting patch exactly once. Never invent, omit, duplicate, judge, or
+repair a demand. Retain the complete tested scenario for every demand: relevant
+setup/state changes, exact operation, observation point, assertion relation, and
+expected value.

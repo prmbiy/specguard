@@ -1,0 +1,47 @@
+{
+  "repo": "kornia/kornia",
+  "snapshot": "90650596d4de49448ea1359975d3baff71931c84",
+  "fix_pr": "https://github.com/kornia/kornia/pull/4471",
+  "candidate_id": "kornia-4471",
+  "evidence_packet": "packets/kornia__kornia__4471",
+  "quotes": [
+    {
+      "quote": "Adds BFLOAT16 support to kornia.constants.DType, fixing KeyError: 'BFLOAT16' for mix augmentations when the input tensor uses torch.bfloat16.",
+      "source_url": "https://github.com/kornia/kornia/pull/4471"
+    },
+    {
+      "quote": "This enables `RandomMosaic`, `RandomMixUpV2`, `RandomCutMixV2`, and `RandomJigsaw `to run with `bfloat16 `inputs instead of failing during dtype resolution. The affected CPU bfloat16 strict-xfail entries are also updated now that these tests can execute.",
+      "source_url": "https://github.com/kornia/kornia/pull/4471"
+    },
+    {
+      "quote": "pytest.skip(\"Tracked in #4467: the mix forward path has no bfloat16 DType\")",
+      "source_url": "https://github.com/kornia/kornia/pull/4471/files"
+    },
+    {
+      "quote": "call\tbuiltins.KeyError\ttests/augmentation/test_augmentation_mix.py::TestRandomMosaic::test_numerical[cpu-bfloat16]",
+      "source_url": "https://github.com/kornia/kornia/pull/4471/files"
+    },
+    {
+      "quote": "bfloat16: `RandomJigsaw`, `RandomCutMixV2`, `RandomMixUpV2` and `RandomMosaic` raise `KeyError: 'BFLOAT16'` ([#4467](https://github.com/kornia/kornia/issues/4467))",
+      "source_url": "https://github.com/kornia/kornia/pull/4471/files"
+    }
+  ],
+  "test_selector": "tests/augmentation/test_augmentation_mix.py::TestRandomMixUpV2::test_random_mixup_p0",
+  "test_source_sha256": "adc23fa45797417f76dc8efc0640884588a87f622368262bbf24a9abde8bd544",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-kornia-bfloat16-mix:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "CPU PyTorch installed. Upstream half-precision xfail registry and its pytest hook remain unchanged. The expected-failure policy is part of this candidate; discovery/formalization must include that policy, not just the passing assertions. GPU backends are not provisioned.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:dcbcab4841315f91b5d2c2f9577fc9019e4010edbf5b4b95314ba9b22da021fb",
+  "build_log": "output/specguard_builds/20260921T223538Z/kornia-bfloat16-mix.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/kornia-bfloat16-mix.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/kornia-bfloat16-mix.cli.log"
+}

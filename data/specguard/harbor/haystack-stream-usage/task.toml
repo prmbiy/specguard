@@ -1,0 +1,17 @@
+version = "1.0"
+
+[metadata]
+name = "haystack-stream-usage"
+description = "Preserve documented behavior while satisfying the selected repository test"
+
+[environment]
+build_timeout_sec = 1800
+cpus = 4
+memory_mb = 8192
+storage_mb = 16384
+
+[verifier]
+timeout_sec = 120
+
+[agent]
+timeout_sec = 900

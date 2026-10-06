@@ -1,0 +1,30 @@
+# Local credentials and machine settings
+/.env
+/config.local.toml
+/.claude/
+/.vscode/
+
+# Experiment outputs and private working material
+/output/
+/manual/
+/session_backups/
+/specguard.zip
+/.docs/
+/vendor/
+
+# Generated Python and Lean files
+/.venv/
+/lean_env/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+/build/
+/dist/
+
+# Local scratch datasets
+/data/verina/
+/data/swebench/manual/
+/data/livecodebench/_spec_*/
+/data/livecodebench/spec_28_test/
+/data/livecodebench/dataset/_one_*.json

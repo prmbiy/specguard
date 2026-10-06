@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/pandas-dev/pandas",
+  "image_tag": "specguard-pandas-eval:demo",
+  "snapshot": "04a5f9741d754513bbfc26bc2f048ca36bed6725",
+  "fix_pr": "https://github.com/pandas-dev/pandas/pull/64213",
+  "issue": "https://github.com/pandas-dev/pandas/issues/64208",
+  "test_file": "pandas/tests/computation/test_eval.py",
+  "test_name": "test_assignment_not_inplace",
+  "instruction_origin": "Researcher-written task restating the documented inplace=False contract; not a verbatim historical issue",
+  "test_modifications": "none; reproduction uses pytest --runxfail --noconftest for this fixture-free method",
+  "fresh_2026_defect": false,
+  "purpose": "CLI/Harbor development demonstration, not a fresh-defect evaluation claim",
+  "agent_visibility": "Only original repository and instruction; this file stays outside /testbed"
+}

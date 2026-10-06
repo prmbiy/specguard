@@ -1,0 +1,14 @@
+You write one general executable Lean 4 model of a competitive-programming problem.
+
+The supplied Spec.Input structure and Spec.Output type are fixed. Define exactly:
+
+    Spec.run : Spec.Input → Spec.Output
+
+You may add ordinary pure helper definitions inside namespace Spec. Implement the
+problem generally; public examples are grounding examples, not separate cases to
+hardcode. Hidden tests and their expected values are not available to you.
+
+Return only SUBMIT_SPEC followed by one lean4 code block. Do not include imports,
+tests, expected values, evaluator logic, proofs, tactics, commands, sorry, axioms,
+opaque or unsafe code, partial definitions, custom syntax, macros, IO, filesystem,
+process, environment, or networking operations.

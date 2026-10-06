@@ -1,0 +1,43 @@
+{
+  "repo": "DefectDojo/django-DefectDojo",
+  "snapshot": "2427d34148a94732d7195e148228c886c88192ed",
+  "fix_pr": "https://github.com/DefectDojo/django-DefectDojo/pull/15985",
+  "candidate_id": "defectdojo-15985",
+  "evidence_packet": "packets/DefectDojo__django-DefectDojo__15985",
+  "quotes": [
+    {
+      "quote": "The notes list now applies the same shared visibility helper the rest of the codebase already uses, so every read path agrees. Adds regression tests across all three parent resources.\n\nAn existing test asserted the older behaviour and is inverted to match. No functional change for a note's own author or for a superuser.",
+      "source_url": "pr.json"
+    },
+    {
+      "quote": "# Mirror v2 exactly: return every note incl. private ones. In v2 the notes @action returns\n        # `parent.notes.all()`; `private` only excludes a note from generated reports, it is not a\n        # per-user read filter (\u00a712). `select_related(\"author\")` keeps the list query count flat.",
+      "source_url": "pr.diff"
+    },
+    {
+      "quote": "note privacy (v2 parity: `private` is a per-user read filter)",
+      "source_url": "pr.diff"
+    },
+    {
+      "quote": "def test_private_note_visible_to_other_authorized_user_v2_parity(self):\n        \"\"\"v2 parity: the notes endpoint returns *all* notes; `private` is not a per-user read filter.\"\"\"",
+      "source_url": "pr.diff"
+    }
+  ],
+  "test_selector": "unittests/api_v3/test_apiv3_subresources.py::TestApiV3SubresourcesNotePrivacy::test_private_note_visible_to_other_authorized_user_v2_parity",
+  "test_source_sha256": "55a6a5f95f4c9bed5419602c89937bfe0f379cecfaab059127d17b4709fb218d",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-defectdojo-note-privacy:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Source-inspection image with Django tooling, not a complete DefectDojo deployment. Full pinned application requirements, database migrations, application settings and test fixtures remain necessary for execution.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:fea5a71689e42091333f0fec1c7704ac7130ab524798599366f3a7cc7d8be240",
+  "build_log": "output/specguard_builds/20260921T223538Z/defectdojo-note-privacy.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/defectdojo-note-privacy.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/defectdojo-note-privacy.cli.log"
+}

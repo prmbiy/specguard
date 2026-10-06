@@ -1,0 +1,26 @@
+# SWE-bench execution-consensus baseline. Generates each fix once, then scores
+# the same fixes against both Original and Oneoff test suites privately.
+#   uv run swebench-consensus --config configs/swebench_consensus.yaml --limit 5
+
+# --- OpenRouter / GPT-5.6 Sol ----------------------------------------------
+provider: openai_compatible
+model: openai/gpt-5.6-sol
+api_key_env: OPENROUTER_API_KEY
+api_base_env: OPENROUTER_BASE_URL
+
+# --- Direct OpenAI ----------------------------------------------------------
+# provider: openai_compatible
+# model: gpt-5.6-sol
+# api_key_env: OPENAI_API_KEY
+# api_base_env: ''
+
+max_tokens: 16000
+limit: 0                         # 0 = all 349 paired tasks
+# ids:
+#   - astropy__astropy-12907
+localize_turns: 20
+candidates: 5                    # N=1 is the first of these five edits
+repair_attempts: 3               # per candidate; up to 15 repair calls/task with 5 candidates
+exec_timeout: 120                # localization bash command (seconds)
+test_timeout: 300                # each independent suite evaluation (seconds)
+workers: 50                       # each task can hold a 4 GB Docker container

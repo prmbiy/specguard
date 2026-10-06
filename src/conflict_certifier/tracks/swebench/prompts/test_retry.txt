@@ -1,0 +1,7 @@
+Rejected: {error}
+Return a corrected SUBMIT_TESTS response with exactly one TEST_MODEL block and one
+TEST_CASES block. Use only genuine corresponding assertions and verbatim source
+quotations. Never invent or duplicate an assertion, expected value, or pairing. For
+every assertion, retain the complete tested scenario: relevant setup/state changes,
+exact operation, observation point, assertion relation, and expected value. Do not
+submit an expected value without the input and execution context that produced it.

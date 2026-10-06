@@ -1,0 +1,43 @@
+{
+  "repo": "pola-rs/polars",
+  "snapshot": "c6e05d169d48c28f860884c314d5126d101dabda",
+  "fix_pr": "https://github.com/pola-rs/polars/pull/28435",
+  "candidate_id": "polars-28435",
+  "evidence_packet": "packets/pola-rs__polars__28435",
+  "quotes": [
+    {
+      "quote": "The root cause of the failure is that there is no guarantee of the ordering of the `top_k` outputs. Therefore the `top_k` outputs in different columns are allowed to be ordered differently with respect to each other, meaning that `check_row_order=False` is still too strict of a check.",
+      "source_url": "https://github.com/pola-rs/polars/pull/28435"
+    },
+    {
+      "quote": "This test was [failing](https://github.com/pola-rs/polars/actions/runs/29636129742/job/88058682094) on the coverage build in CI, leading to the mistaken [issue report](https://github.com/pola-rs/polars/issues/28405).",
+      "source_url": "https://github.com/pola-rs/polars/pull/28435"
+    },
+    {
+      "quote": "\"b_top_by_ca\": [11, 7],",
+      "source_url": "https://github.com/pola-rs/polars/blob/c6e05d169d48c28f860884c314d5126d101dabda/py-polars/tests/unit/operations/test_top_k.py"
+    },
+    {
+      "quote": "-            \"b_top_by_ca\": [11, 7],\n-            \"c_top_by_ca\": [\"Orange\", \"Banana\"],\n+            \"b_top_by_ca\": [7, 11],\n+            \"c_top_by_ca\": [\"Banana\", \"Orange\"],",
+      "source_url": "https://github.com/pola-rs/polars/pull/28435.diff"
+    }
+  ],
+  "test_selector": "py-polars/tests/unit/operations/test_top_k.py::test_top_k",
+  "test_source_sha256": "9d32cd06d5d739ecf87907f2aabec243d328f683d044f9b8cf7a4a901cd5668e",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-polars-topk-order:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Source-inspection image. The pinned Rust/Polars extension is not built; no newer PyPI implementation is substituted. Executing the selected test requires building that extension.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:73e518a05b5995a2050298faa1a310bb33251f89e3028b1f87bfeecfd7800c00",
+  "build_log": "output/specguard_builds/20260921T223538Z/polars-topk-order.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/polars-topk-order.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/polars-topk-order.cli.log"
+}

@@ -1,0 +1,7 @@
+Rejected connector:
+{error}
+
+Return a corrected `SUBMIT_CONNECTOR` artifact only. Every True or False for a non-None
+demand must come from applying spec_run to its corresponding frozen input. Do not
+substitute inputs, classify numbered tests, or hardcode accepted values. Return None
+when no honest semantic connection exists.

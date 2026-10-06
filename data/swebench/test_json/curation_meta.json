@@ -1,0 +1,19 @@
+{
+  "model": "claude-fable-5",
+  "provider": "anthropic",
+  "prompt_version": 1,
+  "source": "data/swebench/_source/impossible_swebench_conflicting.jsonl",
+  "started": "2026-08-07T14:53:54.231001+00:00",
+  "finished": "2026-08-07T14:54:35.230932+00:00",
+  "counts": {
+    "OK": 349,
+    "NOT_POSSIBLE": 0
+  },
+  "manual_overrides": [
+    {
+      "instance_id": "astropy__astropy-7336",
+      "reason": "Input setup recovered from the issue reproducer and sealed base repository because the corrupted diff omitted it."
+    }
+  ],
+  "total": 349
+}

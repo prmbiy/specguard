@@ -1,0 +1,86 @@
+# SpecGuard CLI — shared settings, independent of the task.
+#
+#   uv run specguard-bench --config configs/specguard.yaml
+#   specguard "Task description" --config /absolute/path/to/configs/specguard.yaml
+#
+# Uncomment one complete model block at a time; comment out the others.
+# Outputs: output/specguard/<model>/<timestamp>/<taskid>/
+
+# --- OpenAI / GPT 5.6 Sol ---------------------------------------------------
+# provider: openai_compatible
+# model: gpt-5.6-sol
+# api_key_env: OPENAI_API_KEY
+
+# --- OpenRouter / GPT 5.6 Sol -----------------------------------------------
+provider: openai_compatible
+model: openai/gpt-5.6-sol
+api_key_env: OPENROUTER_API_KEY
+api_base_env: OPENROUTER_BASE_URL
+
+# --- Anthropic / Fable 5 ----------------------------------------------------
+# provider: anthropic
+# model: claude-fable-5
+# api_key_env: ANTHROPIC_API_KEY
+# effort: medium                    # low | medium | high | xhigh | max
+
+# --- Anthropic / Opus 5 -----------------------------------------------------
+# provider: anthropic
+# model: claude-opus-5
+# api_key_env: ANTHROPIC_API_KEY
+# effort: medium
+
+# --- OpenRouter / Kimi K3 ---------------------------------------------------
+# provider: openai_compatible
+# model: moonshotai/kimi-k3
+# api_key_env: OPENROUTER_API_KEY
+# api_base_env: OPENROUTER_BASE_URL
+
+# --- OpenRouter / Qwen 3.8 --------------------------------------------------
+# provider: openai_compatible
+# model: qwen/qwen3.8-27b
+# api_key_env: OPENROUTER_API_KEY
+# api_base_env: OPENROUTER_BASE_URL
+
+# --- Packaged tasks (22) -----------------------------------------------------
+# Native/external runtime requirements: data/specguard/harbor/README.md
+tasks:
+  - pandas-eval-not-inplace
+  - comfyui-scoped-fallback
+  - vllm-precompiled-flags
+  - haystack-stream-usage
+  - openhands-search-limit
+  - opencontracts-optional-corpus
+  - ray-actor-order
+  - polars-topk-order
+  - anyllm-multiturn-tools
+  - erpnext-period-counter
+  - defectdojo-note-privacy
+  - borg-preopen-atime
+  - xtgeo-rms-precision
+  - gardena-discovery-burst
+  - unsloth-mcp-tool-names
+  - sonic-frr-loopback-acl
+  - ucp-repeated-totals
+  - vultron-canonical-case
+  - ckan-include-users-default
+  - kornia-bfloat16-mix
+  - robottelo-subscription-columns
+  - opendatahub-eval-completed
+
+# --- Budget ----------------------------------------------------------------
+max_tokens: 16000
+time_budget: 900                    # overall CLI deadline, seconds
+
+# --- Agent limits ----------------------------------------------------------
+spec_turns: 120                     # total SpecAgent turns
+spec_submissions: 10                # Lean submissions within those turns
+exec_timeout: 120                   # per SpecAgent bash command, seconds
+test_submissions: 10                # TestAgent submissions
+connector_submissions: 6            # ConnectorAgent submissions
+discovery_turns: 40                 # test discovery turns
+source_selection_turns: 40          # implementation-source selection turns
+
+# --- Concurrency / Lean backend ---------------------------------------------
+workers: 6                         # concurrent tasks, each in its own container
+repl_processes: 4                  # shared warm REPLs, NOT one pool per task
+lean_timeout: 120                   # per Lean check, seconds

@@ -1,0 +1,43 @@
+{
+  "repo": "cloudless-garden/ha-gardena-smart-local-preview",
+  "snapshot": "1ac21261d6333fa9ecf744f28164749c54367318",
+  "fix_pr": "https://github.com/cloudless-garden/ha-gardena-smart-local-preview/pull/136",
+  "candidate_id": "hagardena-136",
+  "evidence_packet": "packets/cloudless-garden__ha-gardena-smart-local-preview__136",
+  "quotes": [
+    {
+      "quote": "PR #121 changed `_schedule_unknown_device_discovery` from cancel-and-reschedule to skip-while-pending, but the burst test still asserted the old cancel behavior.",
+      "source_url": "pr.json (PR body)"
+    },
+    {
+      "quote": "The mismatch only surfaced once both PRs landed on main, since each was tested against the other's pre-merge base.",
+      "source_url": "pr.json (PR body)"
+    },
+    {
+      "quote": "Updates the test to assert the actual debounce behavior: a burst collapses into one scheduled run, no cancel.",
+      "source_url": "pr.json (PR body)"
+    },
+    {
+      "quote": "first_handle.cancel.assert_called_once()\n-    second_handle.cancel.assert_not_called()\n-    assert coordinator._unknown_device_discovery_handle is second_handle",
+      "source_url": "pr.diff"
+    }
+  ],
+  "test_selector": "tests/test_coordinator.py::test_schedule_unknown_device_discovery_reschedules_on_burst",
+  "test_source_sha256": "8fa48f6ac27850a78213c1b1b1608fc3a2df90cc153715a74665e4cb0f9a3fd7",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-gardena-discovery-burst:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Home Assistant test dependencies installed. Selected test uses mocked scheduling, not physical Gardena hardware. Dependency versions are recorded in the build freeze; reproduction has not yet been verified.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:c65cd7de847aca4627ea16c13d3427a633a235dd50380f8fc1379bc0496f8147",
+  "build_log": "output/specguard_builds/20260921T223538Z/gardena-discovery-burst.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/gardena-discovery-burst.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/gardena-discovery-burst.cli.log"
+}

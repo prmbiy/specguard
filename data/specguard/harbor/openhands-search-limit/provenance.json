@@ -1,0 +1,42 @@
+{
+  "repo": "OpenHands/software-agent-sdk",
+  "snapshot": "29383741587f95edd09295e9c6727c14ac7e8622",
+  "fix_pr": "https://github.com/OpenHands/software-agent-sdk/pull/4991",
+  "candidate_id": "openhands-4991",
+  "evidence_packet": "packets/OpenHands__software-agent-sdk__4991",
+  "quotes": [
+    {
+      "quote": "The four paginated search endpoints declare their page-size bound as `Query(gt=0, lte=100)`.",
+      "source_url": "https://github.com/OpenHands/software-agent-sdk/commit/b054a2fe99173baee47897e4f3af7a910d3aab1e"
+    },
+    {
+      "quote": "`lte` is not a FastAPI/Pydantic constraint keyword — the correct spelling is `le` — and an unknown key does not raise. It rides along into the JSON schema and is never enforced, so `limit=101` passes validation and reaches the handler's bare `assert limit <= 100`, which surfaces as an unhandled `AssertionError`.",
+      "source_url": "https://github.com/OpenHands/software-agent-sdk/commit/b054a2fe99173baee47897e4f3af7a910d3aab1e"
+    },
+    {
+      "quote": "Update `test_search_conversations_limit_validation`, which asserted the old behaviour (`pytest.raises(AssertionError)` for `limit=101`).",
+      "source_url": "https://github.com/OpenHands/software-agent-sdk/commit/b054a2fe99173baee47897e4f3af7a910d3aab1e"
+    },
+    {
+      "quote": "# Test limit too high - endpoint has FastAPI validation (lte=100) and assertion\n        # The assertion in the endpoint will cause an AssertionError to be raised\n        with pytest.raises(AssertionError):",
+      "source_url": "https://github.com/OpenHands/software-agent-sdk/commit/b054a2fe99173baee47897e4f3af7a910d3aab1e"
+    },
+    {
+      "quote": "Any caller currently relying on a 500 for an oversized `limit` would now get a 422, which is the documented meaning of the response.",
+      "source_url": "https://github.com/OpenHands/software-agent-sdk/commit/b054a2fe99173baee47897e4f3af7a910d3aab1e"
+    }
+  ],
+  "test_selector": "tests/agent_server/test_conversation_router.py::test_search_conversations_limit_validation",
+  "instruction_origin": "Researcher-written from cited intent evidence; not verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA from saved evidence packet; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-openhands-search-limit:demo",
+  "image_id": "sha256:a1add805ff72041e98c79b4db92426662812e22a5353a5d60f002e96e78ba46a",
+  "build_log": "output/specguard_builds/20260921/openhands-search-limit.log",
+  "installed_versions": "output/specguard_builds/20260921/openhands-search-limit.requirements.txt",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "The original test may PASS against the buggy implementation; a Python failure is not required to establish the task/test contradiction. The full locked workspace has substantial dependencies.",
+  "agent_visibility": "Provenance and research evidence stay outside /testbed; image contains original snapshot and retained upstream license files."
+}

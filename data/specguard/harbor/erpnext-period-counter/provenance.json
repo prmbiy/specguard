@@ -1,0 +1,39 @@
+{
+  "repo": "frappe/erpnext",
+  "snapshot": "1dd0b7dc9e7c687c9c051562d45f6fa91d51eaea",
+  "fix_pr": "https://github.com/frappe/erpnext/pull/59000",
+  "candidate_id": "erpnext-59000",
+  "evidence_packet": "packets/frappe__erpnext__59000",
+  "quotes": [
+    {
+      "quote": "Unblocks `develop`. Every erpnext PR is failing `test_document_naming_rule_based_on_posting_date` since frappe/frappe#42690 merged this morning.",
+      "source_url": "https://github.com/frappe/erpnext/pull/59000"
+    },
+    {
+      "quote": "That PR moved Document Naming Rule counters off a single field on the rule and onto a counter per resolved prefix in `tabSeries`, so a prefix carrying `.MM.` / `.YYYY.` restarts when the period changes. That was the point of it \u2014 frappe/frappe#35587.",
+      "source_url": "https://github.com/frappe/erpnext/pull/59000"
+    },
+    {
+      "quote": "This test asserted the old behaviour:\n\n```python\nsi.posting_date = \"2025-12-31\"  ->  SI-12-2025-00001\nsi.posting_date = \"2026-01-01\"  ->  SI-01-2026-00002   # counter carried across the year\n```\n\nThe second invoice now gets `SI-01-2026-00001`.",
+      "source_url": "https://github.com/frappe/erpnext/pull/59000"
+    }
+  ],
+  "test_selector": "erpnext/controllers/tests/test_accounts_controller.py::TestAccountsController::test_document_naming_rule_based_on_posting_date",
+  "test_source_sha256": "ce6b85f4825b5ced70566f146e823c1b16e608167b767b6edb2ac91a6384fa4c",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-erpnext-period-counter:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "ERPNext Python dependencies installed. A compatible Frappe checkout (including the per-prefix naming change), bench site, MariaDB and Redis are still required for execution. These external services are not fabricated or replaced with mocks.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:e6557059d4591d0728d0f9bf97a67b965151895544ac80d720f422cb37cd024f",
+  "build_log": "output/specguard_builds/20260921T223538Z/erpnext-period-counter.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/erpnext-period-counter.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/erpnext-period-counter.cli.log"
+}

@@ -1,0 +1,39 @@
+{
+  "repo": "mozilla-ai/any-llm",
+  "snapshot": "9b3448ff8ef7953877758f6b618720cee59a74e8",
+  "fix_pr": "https://github.com/mozilla-ai/any-llm/pull/1391",
+  "candidate_id": "anyllm-1391",
+  "evidence_packet": "packets/mozilla-ai__any-llm__1391",
+  "quotes": [
+    {
+      "quote": "The agent-loop tests introduced in #1327 reject valid conversations: a model may request Paris and London weather on separate turns, and a final answer may contain an empty tool-call list.",
+      "source_url": "https://github.com/mozilla-ai/any-llm/pull/1391"
+    },
+    {
+      "quote": "This behavior already exists on `main`: the test requests sequential calls but does not assert their order. Adding strict sequencing coverage is outside this PR\u2019s scope. We\u2019ve renamed the test to better reflect what it actually verifies.",
+      "source_url": "https://github.com/mozilla-ai/any-llm/pull/1391"
+    },
+    {
+      "quote": "Treat an empty `tool_calls` list as a final response.\n\n`ChatCompletionMessage.tool_calls` permits both `None` and `[]`. When it is `[]`, `_run_agent_loop` skips the final-response branch and can continue until the iteration-limit assertion.",
+      "source_url": "https://github.com/mozilla-ai/any-llm/pull/1391"
+    }
+  ],
+  "test_selector": "tests/integration/test_agent_loop.py::test_agent_loop_parallel_tool_calls",
+  "test_source_sha256": "20937f4de365e6703623a8852897cf564b0ec6ed77a85b9bd8187a17c7650aca",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-anyllm-multiturn-tools:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "The selected upstream integration test needs live provider credentials/network. Neither is baked into this image and no provider requests are made by packaging or validation. Test source remains unchanged.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:f12d47c35fa844762a3ef3a433e3dc05bbeba93bf11ac925ec9439385d9c1fe5",
+  "build_log": "output/specguard_builds/20260921T223538Z/anyllm-multiturn-tools.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/anyllm-multiturn-tools.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/anyllm-multiturn-tools.cli.log"
+}

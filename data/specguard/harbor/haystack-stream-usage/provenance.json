@@ -1,0 +1,34 @@
+{
+  "repo": "deepset-ai/haystack",
+  "snapshot": "de412b9b8817a577d160d33c3da27834fcb7c6a0",
+  "fix_pr": "https://github.com/deepset-ai/haystack/pull/12524",
+  "candidate_id": "haystack-12524",
+  "evidence_packet": "packets/deepset-ai__haystack__12524",
+  "quotes": [
+    {
+      "quote": "`openai` 3.6.0 added `compute_units` to `CompletionUsage`. `_serialize_object` serializes usage with `model_dump()`, so the new field lands in `meta[\"usage\"]` and the two exact-dict assertions in `test/components/generators/chat/test_openai.py` fail",
+      "source_url": "https://github.com/deepset-ai/haystack/pull/12524"
+    },
+    {
+      "quote": "The same thing happened in #12374 for `PromptTokensDetails.cache_write_tokens` and `.image_tokens`. Re-transcribing the 3.6.0 shape would just queue up the next breakage.",
+      "source_url": "https://github.com/deepset-ai/haystack/pull/12524"
+    },
+    {
+      "quote": "no new tests; this repairs two existing ones, which is the whole change.",
+      "source_url": "https://github.com/deepset-ai/haystack/pull/12524"
+    }
+  ],
+  "test_selector": "test/components/generators/chat/test_openai.py::TestChatCompletionChunkConversion::test_handle_stream_response",
+  "instruction_origin": "Researcher-written from cited intent evidence; not verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA from saved evidence packet; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-haystack-stream-usage:demo",
+  "image_id": "sha256:f59aec37cf81d7c1017b64d1389f263b119ca6028db01b577459f39a65ca5c84",
+  "build_log": "output/specguard_builds/20260921/haystack-stream-usage.log",
+  "installed_versions": "output/specguard_builds/20260921/haystack-stream-usage.requirements.txt",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Dependency-sensitive case: the OpenAI SDK version determines the serialized fields. This recipe does NOT pin a verified historical SDK version yet; do not report it as reproduced until the field mismatch is checked. Test uses mocked chunks, not paid API requests.",
+  "agent_visibility": "Provenance and research evidence stay outside /testbed; image contains original snapshot and retained upstream license files."
+}

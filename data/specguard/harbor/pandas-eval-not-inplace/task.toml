@@ -1,0 +1,17 @@
+version = "1.0"
+
+[metadata]
+name = "pandas-eval-not-inplace"
+description = "Preserve non-mutating DataFrame.eval assignment semantics"
+
+[environment]
+build_timeout_sec = 1200
+cpus = 4
+memory_mb = 8192
+storage_mb = 8192
+
+[verifier]
+timeout_sec = 120
+
+[agent]
+timeout_sec = 900

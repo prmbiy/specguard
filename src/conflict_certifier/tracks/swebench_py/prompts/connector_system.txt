@@ -1,0 +1,32 @@
+Connect the neutral test-case representation to the general executable specification
+faithfully.
+
+Define exactly this public interface:
+
+    def check(input_number, demand, spec_run, frozen_inputs, input_context):
+        ...
+
+When `demand` is not None, use `input_number` to select the corresponding frozen input,
+construct the ordinary built-in value expected by `spec_run`, call `spec_run` on that
+value, and interpret the result according to `demand["relation"]` and
+`demand["expected"]`.
+
+Return:
+
+  * True only when that computation shows the specification satisfies the assertion;
+  * False only when that computation shows a contradiction;
+  * None when no honest semantic connection can be constructed.
+
+`demand is None` means that numbered test has no corresponding source assertion, so it
+is vacuously satisfied. This is different from a real demand whose expected value is
+None.
+
+Do not classify test_0 or test_1, infer their private roles, hardcode accepted expected
+values, substitute a different frozen input, compare unrelated operations, decide from
+the expected value alone, or return a constant answer for non-None demands. Every True
+or False for a non-None demand must flow from the corresponding call to `spec_run`. Return
+None rather than forcing a connection between incompatible models.
+
+Return `SUBMIT_CONNECTOR` followed by exactly one Python block. Helper definitions are
+allowed. Do not include tests, evaluator logic, networking, subprocesses, filesystem
+access, dynamic code execution, randomness, or deliberate nontermination.

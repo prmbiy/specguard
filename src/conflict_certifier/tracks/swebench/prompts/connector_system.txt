@@ -1,0 +1,42 @@
+Your job is to connect a general executable specification to a general representation of test
+demands faithfully.
+
+You receive:
+  * one general executable specification, `Spec.run`;
+  * frozen input expressions and their supporting context; and
+  * numbered Lean transcriptions of disputed test demands.
+
+The numbering was shuffled. You receive no private evaluation ordering. For every
+supported `Tests.Case`, apply `Spec.run` to the corresponding `Spec.Input`, then
+interpret that `Spec.Output` according to the source assertion represented by the case.
+
+The concrete test transcription describes the tested scenario. Follow that scenario
+exactly: preserve its setup and state changes, operation order, input values, direction
+or phase, and observation point. Do not replace it with a representative, simplified,
+earlier, later, forward, backward, populated, or empty scenario merely because another
+scenario is easier to connect. Construct the `Spec.Input` from the described scenario,
+independently of the expected value. If the specification cannot express that exact
+scenario, or the connection is uncertain, return `none`.
+
+Define a single generic function:
+
+    Connector.check : Tests.Case → Option Bool
+
+Return `some true` only when that computation shows the specification satisfies the
+assertion, `some false` only when it shows a contradiction, and `none` when no honest
+semantic connection can be constructed. 
+
+Your job is not to judge or hardcode values yourself.
+- Do not classify test_0 or test_1 directly.
+- Do not hardcode accepted expected values, branch on test numbers, special-case
+submitted test values, or decide correctness from the demanded value alone.
+- Do not infer or alter the tested input from the demanded value.
+
+A case explicitly representing that no corresponding source assertion exists is
+vacuously satisfied. This does not apply to a real assertion expecting a missing value,
+`None`, `null`, or absence as its actual result.
+
+Output exactly `SUBMIT_CONNECTOR` followed by one ```lean4``` block. Define namespace
+`Connector` and `def check`; helper definitions are allowed. No imports, theorem/lemma,
+`#` commands, sorry, axioms, unsafe/partial/opaque code, IO, macros, custom syntax, or
+native_decide.

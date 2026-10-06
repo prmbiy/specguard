@@ -1,0 +1,35 @@
+{
+  "repo": "equinor/xtgeo",
+  "snapshot": "ba88852b57bbe02cfa5548d3b89ca79c36fe5dce",
+  "fix_pr": "https://github.com/equinor/xtgeo/pull/1787",
+  "candidate_id": "xtgeo-1787",
+  "evidence_packet": "packets/equinor__xtgeo__1787",
+  "quotes": [
+    {
+      "quote": "After #1776 the precision in exported RMS ASCII file increase from 4 digits to 8 digits. This cause an issue in one of the test due the test was designed to check for a numeric string.\r\n\r\nReplace the check of numeric string with expected log name in the file.",
+      "source_url": "https://github.com/equinor/xtgeo/pull/1787"
+    },
+    {
+      "quote": "-        assert \"Unknown\" in ff\n-        assert \"460297.7747\" in ff\n+        for expected in [\n+            \"OP_2\",\n+            \"Zonelog\",\n+            \"Poro\",\n+            \"Facies\",\n+            \"I_INDEX\",\n+            \"J_INDEX\",\n+            \"K_INDEX\",\n+        ]:\n+            assert expected in ff",
+      "source_url": "https://github.com/equinor/xtgeo/pull/1787/files"
+    }
+  ],
+  "test_selector": "tests/test_roxarapi/test_roxarapi_reek.py::test_blocked_well_roxar_to_from_file",
+  "test_source_sha256": "fac321b420e95784eab7de0354ce02ce28b1cfbdb3d7635938be92ae366f0827",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-xtgeo-rms-precision:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Source-inspection image. Running the selected test requires the proprietary Roxar/RMS Python API, its project fixtures, and a compiled XTGeo extension; those are not redistributed or emulated.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:9b5f9c0b4e89012b88527e9fb99ed5e0361f69f292c10fd8ed19d327c3433123",
+  "build_log": "output/specguard_builds/20260921T223538Z/xtgeo-rms-precision.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/xtgeo-rms-precision.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/xtgeo-rms-precision.cli.log"
+}

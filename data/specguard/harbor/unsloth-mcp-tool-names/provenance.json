@@ -1,0 +1,47 @@
+{
+  "repo": "unslothai/unsloth",
+  "snapshot": "c5faa7fb31a92af7eb996a4de5536025eedb7a63",
+  "fix_pr": "https://github.com/unslothai/unsloth/pull/11051",
+  "candidate_id": "unsloth-11051",
+  "evidence_packet": "packets/unslothai__unsloth__11051",
+  "quotes": [
+    {
+      "quote": "MCP tools with a dot in the name (like Backstage's catalog.get-catalog-entity) or a name longer than 41 characters never reached the model. Settings still said \"Connected (6 tools)\", but the model said the tool did not exist or picked a similar one. The MCP spec allows these names, but OpenAI style tool names do not.",
+      "source_url": "https://github.com/unslothai/unsloth/commit/8453ef4a38fb9c439b50b303f2dc11e011981d97"
+    },
+    {
+      "quote": "Instead of skipping them, Studio now gives these tools a short valid name and maps it back to the real tool when it is called.",
+      "source_url": "https://github.com/unslothai/unsloth/commit/8453ef4a38fb9c439b50b303f2dc11e011981d97"
+    },
+    {
+      "quote": "The approach here is right: aliasing the names instead of dropping them, and resolving back to the raw name at dispatch, approval and display.",
+      "source_url": "https://github.com/unslothai/unsloth/commit/8453ef4a38fb9c439b50b303f2dc11e011981d97"
+    },
+    {
+      "quote": "def test_mcp_specs_skip_oversized_names():\n    ...\n    specs = _mcp_specs_for_server(server, tools)\n    assert len(specs) == 1\n    assert specs[0][\"function\"][\"name\"].endswith(\"__ok\")",
+      "source_url": "https://github.com/unslothai/unsloth/commit/8453ef4a38fb9c439b50b303f2dc11e011981d97"
+    },
+    {
+      "quote": "OpenAI's function.name regex; MCP names that violate it would 400 the whole request, so validate up front and skip with a warning.",
+      "source_url": "https://github.com/unslothai/unsloth/commit/8453ef4a38fb9c439b50b303f2dc11e011981d97"
+    }
+  ],
+  "test_selector": "studio/backend/tests/test_mcp_servers.py::test_mcp_specs_skip_invalid_openai_function_names",
+  "test_source_sha256": "bb8e15ab1aad412e7e7f73fc1fdfad7be773ff4cd7994005d80380b1698fb8d7",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-unsloth-mcp-tool-names:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "CPU source-inspection image with MCP/API utilities. Full Unsloth inference/GPU stack is not installed; no models are downloaded. Selected MCP test uses local data; remaining Studio import dependencies must be checked before reproduction.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:5a799267a61258f78bca6082f934fd38e0988dac169bc5f02eaacd47ab3bd33d",
+  "build_log": "output/specguard_builds/20260921T223538Z/unsloth-mcp-tool-names.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/unsloth-mcp-tool-names.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/unsloth-mcp-tool-names.cli.log"
+}

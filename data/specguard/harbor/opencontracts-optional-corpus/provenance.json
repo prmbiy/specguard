@@ -1,0 +1,21 @@
+{
+  "repo": "Open-Source-Legal/OpenContracts",
+  "snapshot": "68a1264498a724065c96aa0feee163fec585eff5",
+  "fix_pr": "https://github.com/Open-Source-Legal/OpenContracts/pull/1582",
+  "candidate_id": "OpenContracts-1582",
+  "evidence_packet": "packets/Open-Source-Legal__OpenContracts__1582",
+  "quotes": null,
+  "test_selector": "opencontractserver/tests/test_llms_typing_behavior_guards.py::TestAddDocumentNoteToolCorpusOptional::test_add_document_note_tool_passes_none_when_corpus_absent",
+  "instruction_origin": "Researcher-written from cited intent evidence; not verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA from saved evidence packet; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-opencontracts-optional-corpus:demo",
+  "image_id": "sha256:778b8e1b0d071892b362b80750b115ec5d8f30fabc141775ab5af67bb27db92c",
+  "build_log": "output/specguard_builds/20260921/opencontracts-optional-corpus.log",
+  "installed_versions": "output/specguard_builds/20260921/opencontracts-optional-corpus.requirements.txt",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Source-inspection assertion in a Django TestCase, not a simple input/output execution test. Project Django settings/database services still require validation; this is a packaging draft, not an offline-ready reproduction. No assertion or fixture is replaced.",
+  "agent_visibility": "Provenance and research evidence stay outside /testbed; image contains original snapshot and retained upstream license files."
+}

@@ -1,0 +1,34 @@
+# LiveCodeBench Lean track.
+#   uv run python -m conflict_certifier.cli lcb --config configs/livecodebench.yaml
+
+# Exactly one model block should be active. Comment/uncomment a complete block.
+
+# --- OpenAI / GPT 5.6 Sol ---------------------------------------------------
+provider: openai_compatible
+model: gpt-5.6-sol
+api_key_env: OPENAI_API_KEY
+
+# --- Anthropic --------------------------------------------------------------
+# provider: anthropic
+# model: claude-opus-5
+# # model: claude-fable-5
+# api_key_env: ANTHROPIC_API_KEY
+# effort: high                    # low | medium | high | xhigh | max
+
+# --- OpenRouter / DeepSeek v4 Flash -----------------------------------------
+# provider: openai_compatible
+# model: deepseek/deepseek-v4-flash-0731
+# api_key_env: OPENROUTER_API_KEY
+# api_base_env: OPENROUTER_BASE_URL
+
+max_tokens: 16000
+
+split: conflicting             # conflicting | oneoff
+limit: 0                       # 0 = all usable tasks
+
+spec_submissions: 10
+test_order_seed: 0
+
+workers: 30
+repl_processes: 3
+lean_timeout: 120

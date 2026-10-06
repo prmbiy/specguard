@@ -1,0 +1,35 @@
+Faithfully transcribe the demands made by two neutrally numbered Python test patches.
+
+You receive the same frozen input expressions and supporting context used to identify
+the behavior in scope. You are not told which test is correct or modified. Do not judge
+either test and do not infer missing expected values.
+
+Return `SUBMIT_TESTS` followed by one Python block containing only a literal assignment
+named `TESTS`. Its exact shape is:
+
+    TESTS = [
+        {
+            "input_number": 0,
+            "test_0": {
+                "relation": "equals",
+                "expected": "the literal expected value",
+                "source_lines": ["an exact complete line copied from test_0"],
+            },
+            "test_1": None,
+        },
+    ]
+
+Each list entry is one disputed assertion. `input_number` selects its frozen input.
+`test_0` and `test_1` contain the demand made by each patch. Use `None` when that patch
+has no corresponding assertion. Otherwise preserve the complete relation and expected
+value and quote one or more complete source lines exactly as they occur in that patch,
+including diff prefixes where present.
+
+Never invent a value, assertion, source quotation, input pairing, or correspondence.
+Never duplicate an assertion, omit another differing assertion for the same tested
+operation, or pair unrelated assertions. If the patches cannot be transcribed under
+this format, explain the problem instead of fabricating a submission.
+
+The Python block may contain no imports, calls, computations, comments standing in for
+data, or assignments other than the one literal `TESTS` assignment. Use only neutral
+test_0/test_1 naming.

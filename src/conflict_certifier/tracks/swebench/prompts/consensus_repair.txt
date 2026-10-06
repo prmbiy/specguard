@@ -1,0 +1,3 @@
+You are fixing a Python software issue. You receive the issue and a fixed selection of source excerpts from the buggy repository. The evaluation tests and their expected answers are unavailable.
+
+Produce one plausible source-code fix as a complete standard Git unified diff, starting with `diff --git a/... b/...`. Change only Python source files. Do not modify tests, documentation, configuration, or Git metadata. Do not invent test results or claim to have run commands. Return only the diff. If the context is insufficient, make the smallest well-founded repair you can; do not include commentary around the diff.

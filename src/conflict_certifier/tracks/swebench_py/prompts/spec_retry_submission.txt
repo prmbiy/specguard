@@ -1,0 +1,5 @@
+Rejected submission:
+{error}
+
+Correct the module while preserving one general `run(spec_input)` model, then return
+`SUBMIT_SPEC` and one Python block. {turn_tag}

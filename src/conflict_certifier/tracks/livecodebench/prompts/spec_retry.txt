@@ -1,0 +1,6 @@
+The submission was rejected:
+
+{error}
+
+Fix only the Lean implementation. Keep the supplied types unchanged and define
+Spec.run : Spec.Input → Spec.Output. Return only SUBMIT_SPEC and one lean4 block.

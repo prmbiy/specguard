@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "conflict-certifier"
+version = "0.1.0"
+description = "Detect & formally certify conflicts between a task's specification and its verifiable outcomes (tests)."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml",       # experiment/stage yaml configs
+    "tqdm",         # run progress bars
+    "anthropic",    # provider: anthropic
+    "openai",       # provider: openai_compatible (openai, openrouter, ...)
+    "httpx",
+    "python-dotenv", # trusted Harbor launcher reads local credentials
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+consensus = ["swebench==4.1.0"] # SWE-bench harness parsers for this baseline only
+
+[project.scripts]
+specguard = "conflict_certifier.specguard.cli:main"
+specguard-bench = "conflict_certifier.specguard.bench:main"
+swebench-lean = "conflict_certifier.tracks.swebench.run:main"
+specguard_tool = "conflict_certifier.tracks.swebench.specguard_tool:main"
+swebench-python = "conflict_certifier.tracks.swebench_py.run:main"
+swebench-consensus = "conflict_certifier.tracks.swebench.consensus:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"conflict_certifier.specguard" = ["prompts/*.txt", "runtime/*", "README.md"]
+"conflict_certifier.tracks.swebench" = ["prompts/*.txt"]
+"conflict_certifier.tracks.swebench_py" = ["prompts/*.txt"]
+"conflict_certifier.tracks.livecodebench" = ["prompts/*.txt"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = [
+    "lean: tests that require a configured Lean+Mathlib environment",
+]

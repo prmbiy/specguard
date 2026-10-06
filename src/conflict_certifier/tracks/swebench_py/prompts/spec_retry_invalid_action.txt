@@ -1,0 +1,2 @@
+Return either one bash block for repository exploration or `SUBMIT_SPEC` followed by
+one Python block defining `run(spec_input)`. {turn_tag}

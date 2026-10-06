@@ -1,0 +1,43 @@
+{
+  "repo": "CERTCC/Vultron",
+  "snapshot": "0a1ea477411d52306d0ca0a15e34748a1ff73a66",
+  "fix_pr": "https://github.com/CERTCC/Vultron/pull/2357",
+  "candidate_id": "vultron-2357",
+  "evidence_packet": "packets/CERTCC__Vultron__2357",
+  "quotes": [
+    {
+      "quote": "@pytest.mark.xfail(\n    reason=(\n        \"Demo flow uses pre-CBT case seeding pattern; CBT correctly blocks \"\n        \"case replication without prior trust setup. #464 (Two-Actor Demo Redesign) \"\n        \"is closed without resolving this. Tracked in #1994.\"\n    ),\n    strict=False,\n)",
+      "source_url": "pr.diff"
+    },
+    {
+      "quote": "`setup_case_precondition` was calling `create_case_activity` to create a vendor-local case,\nbut the validate-report BT already fires `ProposeReportCaseToActorNode` which causes the CaseActor\nto create the canonical `VulnerabilityCase` (ADR-0041).",
+      "source_url": "pr.json"
+    },
+    {
+      "quote": "`setup_case_precondition` in exchange demos must NOT use `create_case_activity`\nto create a local vendor-owned case. Instead, it should:\n\n1. Submit and validate the report.\n2. Call `_find_canonical_case(client)`",
+      "source_url": "pr.diff"
+    },
+    {
+      "quote": "A separate `create_case_activity` POST creates a **second**, vendor-local case that:\n\n- Has no `ReportCaseLink`, so `create_case_received` skips it (\"no ReportCaseLink and sender is not the CaseActor\").",
+      "source_url": "pr.diff"
+    }
+  ],
+  "test_selector": "test/demo/test_initialize_participant_demo.py::test_demo",
+  "test_source_sha256": "ca147fec1992b27a92e464eeb2024d0e52f283bf0e169fa384ba576d55bd8e94",
+  "test_source_verified": true,
+  "instruction_origin": "Researcher-written from cited intent evidence, with input/output context; not a verbatim historical issue",
+  "test_modifications": "none",
+  "snapshot_kind": "PR base SHA in saved evidence; not asserted to be direct fix parent",
+  "build_verified": true,
+  "image_tag": "specguard-vultron-canonical-case:demo",
+  "reproduction_verified": false,
+  "specguard_executed": false,
+  "packaging_notes": "Application dependencies installed. The original demo test retains its xfail marker. Its service/data-layer setup is not proven operational; an xfail result alone is not conflict reproduction.",
+  "agent_visibility": "Only unmodified repository snapshot, upstream license files and installed dependencies in /testbed; provenance/evidence/fix diff stay on host.",
+  "image_id": "sha256:5029a8b631604b84c3e1ff15970ca27a81621ae8e2a534f87aee63afe881a90d",
+  "build_log": "output/specguard_builds/20260921T223538Z/vultron-canonical-case.log",
+  "installed_versions": "output/specguard_builds/20260921T223538Z/vultron-canonical-case.requirements.txt",
+  "snapshot_check_verified": true,
+  "cli_load_verified": true,
+  "cli_load_log": "output/specguard_builds/20260921T225554Z/vultron-canonical-case.cli.log"
+}

@@ -1,0 +1,29 @@
+# Curation config for scripts/llm_test_input_filter.py — the one-time LLM pass
+# that separates test INPUTS (safe to show the spec agent) from EXPECTED
+# OUTPUTS (the exam answers, which must never leave this folder's pipeline).
+#
+# The output file test_inputs.jsonl in this folder is the frozen "question
+# paper" artifact. Once blessed, experiments load inputs from here and this
+# pass never needs to run again. curation_meta.json (written per run) records
+# model/prompt/date provenance.
+#
+# NOTE: as of writing, test_inputs.jsonl still holds the OLD mechanical
+# extractor's output (known-leaky, see SECURITY_AUDIT_swebench_lean.md
+# Finding 5). It is kept only as the instance list / comparison reference and
+# is overwritten when the filterer runs.
+
+# --- LLM ---------------------------------------------------------------
+model: claude-fable-5        # one-time, correctness-critical: use the strong model
+provider: anthropic         # or openai_compatible + api_key_env/api_base_env
+api_key_env: ANTHROPIC_API_KEY
+api_base_env: ""
+max_tokens: 16000
+
+# --- run ---------------------------------------------------------------
+workers: 24                 # concurrent instances (threads; LLM-bound)
+attempts: 3                 # re-prompts per instance on malformed or leaky output
+prompt_version: 1           # bump when SYSTEM_PROMPT changes; recorded per row
+
+# --- paths (relative to repo root) --------------------------------------
+source: data/swebench/_source/impossible_swebench_conflicting.jsonl
+output: data/swebench/test_json/test_inputs.jsonl

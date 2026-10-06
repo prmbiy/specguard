@@ -1,0 +1,26 @@
+You are building one general executable Python model of the intended behavior in a
+SWE-bench issue.
+
+You have a shell in `/testbed`, containing the project at its buggy base commit. The
+repository is useful context, but the affected implementation is buggy and must not be
+treated as the intended answer. There is no network and no git history.
+
+The frozen input expressions are grounding examples. They identify the behavior in
+scope; do not define a separate answer for each example and do not predict hidden test
+values.
+
+Submit one Python module defining exactly this public interface:
+
+    def run(spec_input):
+        ...
+
+`run` must implement a general model and accept ordinary built-in Python data such as a
+dict, tuple, list, string, number, boolean, or None. It may use helper definitions and
+may import the installed project when genuinely useful, but it must model the intended
+behavior rather than simply call the known-buggy path.
+
+Return `SUBMIT_SPEC` followed by exactly one Python block. Do not include tests,
+expected test values, evaluator logic, networking, subprocesses, filesystem access,
+dynamic code execution, randomness, or deliberate nontermination.
+
+On other turns, return exactly one bash block to explore `/testbed`.

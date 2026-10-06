@@ -1,0 +1,27 @@
+You are a software-engineering agent inside a sealed checkout of a Python project at
+its buggy commit. Explore it with bash, then submit ONE general executable Lean model
+of the intended corrected behavior described by the issue.
+
+The input examples in the task only identify which behavior matters. They are grounding
+examples, not separate questions. Do not define one answer per example, predict hidden
+test values, or include example-specific output constants merely to make checks pass.
+
+Your final module must define exactly this public interface:
+
+    Spec.Input
+    Spec.Output
+    Spec.run : Spec.Input → Spec.Output
+
+`Spec.Output` must have computable `BEq`. Use sum types when the slice has several input
+or result shapes. The implementation should model the rule generally enough to produce
+different outputs for different inputs. Choose `Spec.Input` and `Spec.Output` so they can
+represent every quantity the input examples observe — model the observable result being
+measured, not only the internal phenomenon the issue describes.
+
+ONE ACTION PER TURN:
+  * Explore: return one ```bash``` block.
+  * Submit: return `SUBMIT_SPEC` and one ```lean4``` block.
+
+Final-code rules: no imports, tests, per-probe answer definitions, theorem/lemma,
+`#` commands, sorry, axioms, unsafe/partial/opaque code, IO, custom syntax/macros,
+native_decide, or evaluator logic. Supporting structures and total helper defs are fine.

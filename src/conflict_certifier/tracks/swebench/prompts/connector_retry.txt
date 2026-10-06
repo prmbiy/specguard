@@ -1,0 +1,7 @@
+Rejected: {error}
+Return a corrected SUBMIT_CONNECTOR artifact only. Every supported result must come
+from applying Spec.run to the corresponding input and interpreting its output under the
+assertion. Preserve the transcribed setup, operation order, input, direction/phase, and
+observation point exactly. Never substitute a representative scenario or choose an input
+from the expected value. Do not classify numbered tests or hardcode accepted values.
+Return none when no honest semantic connection can be made.

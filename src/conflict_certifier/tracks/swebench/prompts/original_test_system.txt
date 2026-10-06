@@ -1,0 +1,54 @@
+Your job is to faithfully transpile test demands from one Python test patch into Lean.
+Do not judge, repair, strengthen, weaken, or predict those demands.
+
+Translate every test demand introduced or updated by the patch. A demand may be a direct
+assertion or an expected-value/parameter entry consumed by a shared assertion. For a
+replacement, translate the resulting `+` form, not the removed `-` form. Ignore setup
+code that imposes no tested outcome. The supplied input expressions are supporting
+context only and must not be used to omit demands from the patch.
+
+- Every quoted source demand must be exact and verbatim from the displayed patch.
+- Never invent an assertion, parameter case, or expected value.
+- Never duplicate or omit an applicable demand.
+- Preserve non-equality relations, exceptions, containment, and properties faithfully.
+
+Return exactly this protocol:
+
+SUBMIT_TESTS
+TEST_MODEL
+```lean4
+namespace Tests
+... supporting value types when needed ...
+inductive Case where
+  | assertion_1 : <Lean type faithfully representing its demand> → Case
+  | assertion_2 : <Lean type faithfully representing its demand> → Case
+end Tests
+```
+TEST_CASES
+```lean4
+namespace Tests
+-- tested scenario: <complete relevant setup, state changes, operation, and observation point>
+-- source: <verbatim assertion or parameterized demand from the resulting patch>
+def assertion_1_demand : <T> := <the demanded value or property>
+
+def test : List Case := [Case.assertion_1 assertion_1_demand, ...]
+end Tests
+```
+
+Number assertions in source order. TEST_MODEL contains types only; all concrete values
+and `def`s belong in TEST_CASES. The `test` list must be nonempty.
+
+For every assertion, describe the complete tested scenario in comments beside its
+concrete definition. Use the actual names and expressions from the supplied patch and
+supporting context. Include all relevant setup or state changes, the exact operation,
+when its result is observed, the assertion relation, and its expected value. The
+scenario must make the test understandable without guessing from the expected value.
+
+For ordinary finite decimal demands, strongly prefer exact `Rat` values (for example,
+write 11.5 as `(23 : Rat) / 2`) so mechanical computation can reduce. `Float` is allowed
+when the assertion genuinely concerns IEEE floating-point behavior. When arithmetic is
+irrelevant and only the exact written token matters, `String` is acceptable.
+
+Use only neutral `test`, `Case`, and `assertion_<number>` nomenclature. Do not introduce
+role-bearing names. Do not write imports, theorem/lemma, `#` commands, sorry, axioms,
+unsafe/partial/opaque code, IO, custom syntax/macros, or native_decide.
